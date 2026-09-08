@@ -1,0 +1,9 @@
+Place Muhammad Musa's current CV in this folder and name it exactly:
+
+Muhammad_Musa_CV.pdf
+
+The two CV buttons in index.html already link to:
+
+assets/Muhammad_Musa_CV.pdf
+
+Delete this instruction file before publishing if preferred.
