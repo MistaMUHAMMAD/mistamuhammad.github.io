@@ -4,6 +4,12 @@ A lightweight, responsive portfolio for Executive Assistant, Personal Assistant,
 
 The site uses plain HTML, CSS, and JavaScript. It has no framework, package installation, build command, or paid dependency.
 
+## Latest update: approved portraits and browser-tab icon
+
+This package uses the three approved angled portraits and adds a navy-and-teal **MM** favicon. The professional-focus badge is above the homepage portrait, not over the head. The biography, employment history, contact details, work-sample screenshots, and CV links have not changed.
+
+To update the existing site, extract this ZIP and upload **all of its contents** to the root of `mistamuhammad.github.io`, including `favicon.svg`, `favicon.ico`, and the complete `assets` folder. Do not upload the ZIP itself or an enclosing folder. Keep the existing `assets/Muhammad_Musa_CV.pdf`: the actual CV is not included in this package.
+
 ## Selected homepage headline
 
 **Executive support that keeps priorities clear and work moving.**
@@ -23,12 +29,18 @@ mistamuhammad.github.io/
 ├── index.html
 ├── styles.css
 ├── script.js
+├── favicon.svg
+├── favicon.ico
 ├── README.md
+├── IMAGE_PROMPTS.md
 └── assets/
     ├── Muhammad_Musa_CV.pdf       ← keep your current CV here
-    ├── muhammad-musa-headshot.jpg
-    ├── executive-support-workspace.jpg
-    ├── technical-operations-workspace.jpg
+    ├── muhammad-musa-headshot-angle-v3.jpg
+    ├── executive-support-angle-v3.jpg
+    ├── technical-operations-angle-v3.jpg
+    ├── icons/
+    │   ├── favicon-32.png
+    │   └── apple-touch-icon.png
     ├── work-samples/
     │   ├── executive-calendar.png
     │   ├── meeting-agenda.jpg
@@ -41,7 +53,7 @@ mistamuhammad.github.io/
     └── PLACE_CV_HERE.txt
 ```
 
-`index.html`, `styles.css`, `script.js`, `README.md`, and the `assets` folder must be at the top level of the GitHub repository.
+`index.html`, `styles.css`, `script.js`, `favicon.svg`, `favicon.ico`, `README.md`, `IMAGE_PROMPTS.md`, and the `assets` folder belong at the top level of the GitHub repository. Earlier image versions may also remain inside `assets` for rollback; the page loads only the three current `angle-v3` images.
 
 ## Add the CV
 
@@ -55,16 +67,44 @@ Do not publish the site until the real CV is added, or the CV buttons will lead 
 
 ## Images and visual explanations
 
-- `muhammad-musa-headshot.jpg` is the real portrait used in the homepage hero.
-- `executive-support-workspace.jpg` and `technical-operations-workspace.jpg` are illustrative professional scenes created from the submitted portrait.
-- The two illustrative images are clearly captioned in the website and are not presented as photographs of a client, employer, or completed engagement.
+- `muhammad-musa-headshot-angle-v3.jpg` is the approved AI-assisted homepage portrait with a gentle three-quarter head-and-shoulder angle, based on the submitted real passport-style photo. It is labelled as AI-assisted, not an unedited camera photograph.
+- `executive-support-angle-v3.jpg` and `technical-operations-angle-v3.jpg` are the revised AI-assisted illustrative professional scenes. They use the approved headshot as a pose and likeness reference while preserving their respective work settings and outfits.
+- The two illustrative scenes are clearly captioned in the website and are not presented as photographs of a client, employer, or completed engagement.
+- Earlier image files remain in `assets` for rollback, but the page uses the three new `angle-v3` files.
 - The support workflow, integrated-support model, technical-operations cycle, sample previews, and tool ecosystem are code-based infographics. They remain sharp on phones and do not claim unprovided statistics.
 
-To replace the homepage picture later, create a new image named `muhammad-musa-headshot.jpg`, place it in `assets`, and overwrite the old file. A vertical 4:5 portrait works best.
+To replace the homepage picture later, add a new portrait to `assets` and update the hero image's `src`, `alt`, `width`, and `height` in `index.html`. A vertical 4:5 portrait works best. Keep `height: auto` on `.portrait-card img` in `styles.css` so the image does not become excessively tall at a narrower width. Update or remove the AI-assisted label if the replacement is an actual unedited photograph.
+
+### Approved portrait update — 24 October 2026
+
+The three images were refined with the built-in image-generation workflow, using the original passport-style photograph as the main likeness reference. The red-tie portrait's gentler head angle was approved and used as a reference for the two work scenes. The executive-support scene keeps the navy suit, teal tie, documents, notebook, and laptop. The technical-support scene keeps the light-blue shirt, laptop, secondary monitor, and desk setting. The hero keeps normal 4:5 proportions rather than a tall strip. AI assistance is disclosed and no scene is claimed as proof of a real engagement.
+
+The hero's responsive CSS overrides the fixed HTML height, preserving normal proportions. The professional-focus badge now sits above the photo so it does not obscure the head. Versioned image filenames and a new stylesheet query identify this update separately from cached older files.
+
+### Browser-tab icon
+
+The previous page did not declare a favicon. This version includes:
+
+- `favicon.svg`: sharp, code-drawn MM initials in the site's navy-and-teal palette.
+- `favicon.ico`: 16-, 32-, and 48-pixel fallback icons, also available at the conventional repository-root location.
+- `assets/icons/favicon-32.png`: PNG fallback.
+- `assets/icons/apple-touch-icon.png`: 180-pixel icon for an added home-screen shortcut.
+
+`index.html` links all four files using relative paths, with versioned URLs to distinguish them from cached older icons. Uploading only the photos will not update the tab icon: upload the updated `index.html` and the favicon files as well. After GitHub Pages deploys, close the old tab and open the site in a new tab or private window. If it still shows the globe, confirm the favicon files are present in the same repository and that the latest Pages deployment has completed.
+
+#### Image-generation briefs
+
+The full final prompts are included in `IMAGE_PROMPTS.md`.
+
+1. **Executive support:** preserve the original seated suit-and-documents composition; anchor facial identity in the real photo; use ordinary window light, natural skin texture, realistic fabric, and plausible hands. Keep paper and screen contents indistinct; do not add client details or performance claims.
+2. **Technical operations:** preserve the original pale-blue-shirt, laptop, and monitor composition; use the same face reference, relaxed posture, natural skin and cotton texture, coherent daylight, and a defocused illustrative screen. No real operational statistics are implied.
+3. **Homepage portrait:** retain a navy suit, white shirt, and red tie; use a relaxed three-quarter head angle, normal head-and-shoulder proportions in a 4:5 frame, a plain grey background, natural skin detail, and soft daylight. Change pose and perspective, not facial structure.
+
+Biographical text, work-sample screenshots, LinkedIn URL, international phone number, and CV links are unchanged by this image update. Keep your existing `assets/Muhammad_Musa_CV.pdf` when uploading; this ZIP does not include the actual CV.
 
 ## Screenshot work-sample update — 24 October 2026
 
-The Work section now leads with eight supplied screenshots grouped into five relevant areas. The original headshot, biography, experience, education, contact details, and CV path have been retained.
+The Work section leads with eight supplied screenshots grouped into five relevant areas. The biography, experience, education, contact details, and CV path have been retained. The separate portrait update above now supplies the homepage and illustrated work-setting images.
 
 | Work area | Supplied screenshot | Website placement |
 | --- | --- | --- |
@@ -131,12 +171,12 @@ https://mistamuhammad.github.io/
 1. Extract the updated ZIP file on your phone or computer.
 2. Open the `mistamuhammad.github.io` repository on GitHub.
 3. Choose **Add file → Upload files**.
-4. Drag or select `index.html`, `styles.css`, `script.js`, `README.md`, and the complete `assets` folder from the extracted package.
+4. Drag or select **all extracted files**, including `index.html`, `styles.css`, `script.js`, `favicon.svg`, `favicon.ico`, `README.md`, `IMAGE_PROMPTS.md`, and the complete `assets` folder. These must be in the repository root, not a nested portfolio folder.
 5. If GitHub says files already exist, allow the uploaded versions to replace them.
 6. Keep your existing `assets/Muhammad_Musa_CV.pdf`; the updated package does not remove it.
-7. Enter a commit message such as `Add screenshot-based portfolio work samples`.
+7. Enter a commit message such as `Update approved portfolio portraits and add MM favicon`.
 8. Choose **Commit changes**.
-9. Wait a few minutes, then refresh `https://mistamuhammad.github.io/`. If the old page remains, use a private/incognito window or perform a hard refresh.
+9. Open the repository's **Actions** tab and check that the latest Pages deployment succeeds. Then refresh `https://mistamuhammad.github.io/`. If the old page or globe remains, close the old tab and use a new private/incognito window or perform a hard refresh.
 
 ## Publish with GitHub Pages from a new account
 
@@ -165,6 +205,10 @@ Open `index.html` in a browser. Check the page at desktop and mobile widths. The
 - [ ] `index.html` is in the repository root
 - [ ] Real CV added as `assets/Muhammad_Musa_CV.pdf`
 - [ ] Three portfolio images are inside `assets`
+- [ ] `favicon.svg` and `favicon.ico` are in the repository root
+- [ ] PNG icons are inside `assets/icons`
+- [ ] Updated `index.html` and `styles.css` uploaded, not only the new images
+- [ ] MM icon appears when the deployed site is opened in a fresh browser tab
 - [ ] Eight sample screenshots are inside `assets/work-samples`
 - [ ] Gallery images open, navigate, and close correctly
 - [ ] Confidential screenshots have not been uploaded with the website
@@ -192,7 +236,7 @@ Professional portfolio of Muhammad Musa — executive, operations, administrativ
 **Suggested update commit message**
 
 ```text
-Add screenshot-based portfolio work samples
+Update approved portfolio portraits and add MM favicon
 ```
 
 ## Sharing copy

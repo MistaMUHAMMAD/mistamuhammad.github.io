@@ -382,6 +382,8 @@ a {
 
 .hero-visual {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 440px;
   padding: 0.8rem 0 1.2rem 1.4rem;
@@ -409,6 +411,7 @@ a {
 .portrait-card img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 24%;
@@ -440,16 +443,23 @@ a {
   font-weight: 650;
 }
 
+.portrait-card figcaption small {
+  margin-top: 0.3rem;
+  color: #c8d6df;
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
 .portrait-badge {
-  position: absolute;
-  z-index: 2;
-  left: -1.7rem;
-  top: 3rem;
+  position: relative;
+  order: -1;
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.7rem;
-  max-width: 245px;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
   padding: 0.85rem 1rem;
   color: var(--navy-950);
   background: rgba(255, 255, 255, 0.95);
@@ -2762,9 +2772,7 @@ body.sample-open {
   }
 
   .portrait-badge {
-    left: 0.75rem;
-    top: 0.75rem;
-    max-width: calc(100% - 1.5rem);
+    max-width: 100%;
   }
 
   .support-flow {
