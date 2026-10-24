@@ -26,7 +26,7 @@ if (menuButton && navigation) {
   navigationLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
       closeMenu();
       menuButton.focus();
     }
@@ -114,4 +114,74 @@ const yearElement = document.querySelector("#current-year");
 
 if (yearElement) {
   yearElement.textContent = String(new Date().getFullYear());
+}
+
+const sampleViewer = document.querySelector("#sample-viewer");
+const sampleLinks = Array.from(document.querySelectorAll("a[data-sample-preview]"));
+
+// Each image remains a normal link when JavaScript or native dialog support is unavailable.
+if (sampleViewer && typeof sampleViewer.showModal === "function" && sampleLinks.length) {
+  const viewerImage = document.querySelector("#sample-viewer-image");
+  const viewerTitle = document.querySelector("#sample-viewer-title");
+  const viewerCaption = document.querySelector("#sample-viewer-caption");
+  const viewerCount = document.querySelector("#sample-viewer-count");
+  const originalLink = document.querySelector("#sample-viewer-original");
+  const closeButton = sampleViewer.querySelector("[data-close-sample]");
+  const previousButton = sampleViewer.querySelector("[data-previous-sample]");
+  const nextButton = sampleViewer.querySelector("[data-next-sample]");
+  let activeSampleIndex = 0;
+  let viewerTrigger = null;
+
+  function showSample(index) {
+    activeSampleIndex = (index + sampleLinks.length) % sampleLinks.length;
+    const link = sampleLinks[activeSampleIndex];
+    const thumbnail = link.querySelector("img");
+
+    viewerImage.src = link.href;
+    viewerImage.alt = thumbnail ? thumbnail.alt : link.dataset.title;
+    viewerTitle.textContent = link.dataset.title || "Work sample";
+    viewerCaption.textContent = link.dataset.caption || "Representative portfolio sample.";
+    viewerCount.textContent = `${activeSampleIndex + 1} of ${sampleLinks.length}`;
+    originalLink.href = link.href;
+  }
+
+  sampleLinks.forEach((link, index) => {
+    link.addEventListener("click", (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button > 0) return;
+      event.preventDefault();
+      viewerTrigger = link;
+      showSample(index);
+      sampleViewer.showModal();
+      document.body.classList.add("sample-open");
+      closeButton.focus();
+    });
+  });
+
+  closeButton.addEventListener("click", () => sampleViewer.close());
+  previousButton.addEventListener("click", () => showSample(activeSampleIndex - 1));
+  nextButton.addEventListener("click", () => showSample(activeSampleIndex + 1));
+
+  sampleViewer.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showSample(activeSampleIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showSample(activeSampleIndex + 1);
+    }
+  });
+
+  sampleViewer.addEventListener("click", (event) => {
+    if (event.target !== sampleViewer) return;
+    const bounds = sampleViewer.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+      sampleViewer.close();
+    }
+  });
+
+  sampleViewer.addEventListener("close", () => {
+    document.body.classList.remove("sample-open");
+    if (viewerTrigger) viewerTrigger.focus();
+  });
 }
